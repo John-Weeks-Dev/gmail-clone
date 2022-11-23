@@ -1,7 +1,17 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { v4 as uuid } from 'uuid';
-import { collection, onSnapshot, where, query, doc, setDoc, getDoc, deleteDoc } from "firebase/firestore";
+import { 
+  collection, 
+  onSnapshot, 
+  where, 
+  query, 
+  doc, 
+  setDoc, 
+  getDoc, 
+  deleteDoc, 
+  orderBy
+} from "firebase/firestore";
 import { db } from '@/firebase-init'
 import moment from 'moment'
 
@@ -27,28 +37,35 @@ export const useUserStore = defineStore('user', {
         this.$state.picture = res.data.picture
         this.$state.firstName = res.data.given_name
         this.$state.lastName = res.data.family_name
+        this.$state.lastName = res.data.family_name
     },
 
     getEmailsByEmailAddress() {
 
-      const q = query(collection(db, "emails"), where("toEmail", "==", this.$state.email));
+      const q = query(collection(db, "emails"), where("toEmail", "==", this.$state.email), orderBy("createdAt", "desc"));
 
-      onSnapshot(q, (querySnapshot) => {
-        let resultArray = []
-        querySnapshot.forEach((doc) => {
-          resultArray.push({
-              id: doc.id,
-              firstName: doc.data().firstName,
-              lastName: doc.data().lastName,
-              fromEmail: doc.data().email,
-              toEmail: doc.data().toEmail,
-              subject: doc.data().subject,
-              body: doc.data().body,
-              createdAt: moment(doc.data().createdAt).format("MMM D HH:mm")
-            })
-        });
+      onSnapshot(q, 
+        (querySnapshot) => {
+
+          let resultArray = []
+          querySnapshot.forEach((doc) => {
+            resultArray.push({
+                id: doc.id,
+                firstName: doc.data().firstName,
+                lastName: doc.data().lastName,
+                fromEmail: doc.data().email,
+                toEmail: doc.data().toEmail,
+                subject: doc.data().subject,
+                body: doc.data().body,
+                hasViewed: doc.data().hasViewed,
+                createdAt: moment(doc.data().createdAt).format("MMM D HH:mm")
+              })
+          });
         this.$state.emails = resultArray
-      });
+      }
+      ,(error) => {
+        console.log(error)
+      })
     },
 
     async getEmailById(id) {
@@ -65,7 +82,8 @@ export const useUserStore = defineStore('user', {
           fromEmail: docSnap.data().fromEmail,
           lastName: docSnap.data().lastName,
           subject: docSnap.data().subject,
-          toEmail: docSnap.data().toEmail
+          toEmail: docSnap.data().toEmail,
+          hasViewed: docSnap.data().hasViewed,
         }
       } else {
         console.log("No such document!");
@@ -81,8 +99,19 @@ export const useUserStore = defineStore('user', {
           toEmail: data.toEmail,
           subject: data.subject,
           body: data.body,
+          hasViewed: false,
           createdAt: Date.now()
         });
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
+    async emailHasBeenViewed(id) {
+      try {
+        await setDoc(doc(db, "emails/" + id), {
+          hasViewed: true,
+        }, { merge: true });
       } catch (error) {
         console.log(error)
       }

@@ -68,6 +68,8 @@
   onMounted(async () => {
     const res = await userStore.getEmailById(route.params.id)
 
+    await userStore.emailHasBeenViewed(res.id)
+
     email.value = {
       id: res.id,
       body: res.body,
@@ -76,6 +78,7 @@
       fromEmail: res.fromEmail,
       lastName: res.lastName,
       subject: res.subject,
+      hasViewed: res.hasViewed,
       toEmail: res.toEmail
     }
   })

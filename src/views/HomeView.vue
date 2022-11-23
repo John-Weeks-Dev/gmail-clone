@@ -23,6 +23,7 @@
           :subject="email.subject"
           :body="email.body"
           :time="email.createdAt"
+          :hasViewed="email.hasViewed"
           @selectedId="selectedId"
         />
     </div>

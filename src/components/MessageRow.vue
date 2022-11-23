@@ -1,6 +1,15 @@
 <template>
     <div id="MessageRow">
-        <div class="border-b hover:shadow-lg cursor-pointer">
+        <div 
+            class="
+                border-b 
+                hover:border-gray-300 
+                hover:border-t 
+                hover:border-2 
+                cursor-pointer
+            "
+            :class="[hasViewed ? 'bg-gray-100' : '']"
+        >
             <div class="flex items-center px-4 py-2">
             
                 <div class="flex items-center">
@@ -56,6 +65,7 @@ const props = defineProps({
   subject: String,
   body: String,
   time: String,
+  hasViewed: Boolean
 });
 
 const { id, from, subject, body, time } = toRefs(props);
