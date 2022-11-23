@@ -18,11 +18,11 @@
     const router = useRouter()
 
     onMounted(() => {
-        router.push('/email')
+        setTimeout(() => { router.push('/email') }, 250)
     })
 
     const callback = async (response) => {
         await userStore.getUserDetailsFromGoogle(response)
-        location.href = '/email'
+        setTimeout(() => { router.push('/email') }, 250)
     }
 </script>

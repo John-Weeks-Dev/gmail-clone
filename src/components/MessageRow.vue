@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="flex items-center w-full">
-                    <a :href="`/email/message/${id}`" class="w-full">
+                    <router-link :to="`/email/message/${id}`" class="w-full">
 
                         <div class="flex justify-between items-center">
                             <div class="flex items-center w-full">
@@ -42,7 +42,7 @@
 
                             <div class="text-right truncate mr-4 w-full text-xs font-semibold">{{ time }}</div>
                         </div>
-                    </a>
+                    </router-link>
                 </div>
             </div>
         </div>

@@ -87,7 +87,7 @@
     let res = confirm("Are you sure you want to delete this?");
     if (res) { 
       await userStore.deleteEmail(id)
-      router.push('/email')
+      setTimeout(() => { router.push('/email') }, 250)
     }
 
   }

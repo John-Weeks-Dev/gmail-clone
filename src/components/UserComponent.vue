@@ -59,9 +59,11 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
+import { useRouter } from 'vue-router';
 
 import { useUserStore } from "@/store/user-store";
 const userStore = useUserStore();
+const router = useRouter()
 
 let openMenu = ref(false);
 let img = ref('')
@@ -72,7 +74,7 @@ onMounted(() => {
 
 const logout = () => {
   userStore.clearUser()
-  location.href = '/'
+  setTimeout(() => { router.push('/') }, 250)
 }
 </script>
 
