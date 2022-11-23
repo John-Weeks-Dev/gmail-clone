@@ -3,7 +3,7 @@
         <div 
             class="
                 border-b 
-                hover:border-gray-300 
+                hover:border-gray-200 
                 hover:border-t 
                 hover:border-2 
                 cursor-pointer
