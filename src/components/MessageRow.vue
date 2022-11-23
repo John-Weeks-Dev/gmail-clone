@@ -5,7 +5,8 @@
                 border-b 
                 hover:border-gray-200 
                 hover:border-t 
-                hover:border-2 
+                hover:border-y-2 
+                hover:border-x
                 cursor-pointer
             "
             :class="[hasViewed ? 'bg-gray-100' : '']"
