@@ -17,13 +17,6 @@ Clone the repository
 git clone https://github.com/John-Weeks-Dev/gmail-clone.git
 ```
 
-Open a terminal, CD in to the folder and run these commands
-```
-npm i
-
-cp .env.example .env
-```
-
 Now go to https://console.cloud.google.com/
 
 Generate an API KEY.
