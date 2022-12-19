@@ -28,48 +28,36 @@ Now go to https://console.cloud.google.com/
 
 Generate an API KEY.
 
-You'll need to ENABLE Maps API, Directions API, Places API, and Distance Matrix API.
+Add your new API KEY to the script inside **src/main.js**
 
-Add your new API KEY to the script inside **public/index.html**
 
-![Screenshot 2022-11-23 at 17 40 53](https://user-images.githubusercontent.com/108229029/203526600-42f9f3be-6e9d-4fcc-aff0-5d6c6c7e8d87.png)
+![Screenshot 2022-12-19 at 14 33 10](https://user-images.githubusercontent.com/108229029/208371968-8a66bbed-d157-4ab3-927f-cc573e6f9aaf.png)
+
+And **backend/index.js**
+
+![Screenshot 2022-12-19 at 14 33 32](https://user-images.githubusercontent.com/108229029/208372044-a867263c-b3aa-4575-ba44-8caa8f2ba8ba.png)
+
+Setup Firebase (firestore)
+
+Add the details to **src/firebase-init.js**
 
 Now run this command to start the project 
 ```
+npm i
+
 npm run serve
 ```
 
-And to start in PWA mode run the command
+And to start the backend
 ```
-npm run pwa
-```
-![Screenshot 2022-11-23 at 17 44 01](https://user-images.githubusercontent.com/108229029/203527683-4b43f88e-07d8-4e2a-bfad-9a785afed02f.png)
-
-Open another terminal
-```
-cd server
+cd backend
 
 npm i
-
-cp .env.example .env
-```
-
-Add the Google API Key to the .env
-
-```
-GOOGLE_MAPS_API_KEY=keyhere
 
 npm run watch
 ```
 
-![Screenshot 2022-11-23 at 17 53 00](https://user-images.githubusercontent.com/108229029/203529049-d7790bc7-0d0e-4b20-80d5-9cea46017c57.png)
-
 You should be good to go!
 
 # Application Images
-
-<p float="left">
-  <img width="270" alt="Screenshot 2022-11-23 at 17 10 03" src="https://user-images.githubusercontent.com/108229029/203521356-c0f3956f-2b71-4e53-998a-65d10ffd6f29.png">
-  <img width="270" alt="Screenshot 2022-11-23 at 17 11 15" src="https://user-images.githubusercontent.com/108229029/203521447-f9ad69eb-67c1-4bc5-89c2-378d7a2dd27f.png">
-  <img width="270" alt="Screenshot 2022-11-23 at 17 12 14" src="https://user-images.githubusercontent.com/108229029/203521544-3b982e89-ad62-4e63-a376-5f614acbb588.png">
-</p>
+<img width="1219" alt="Screenshot 2022-12-19 at 14 42 47" src="https://user-images.githubusercontent.com/108229029/208373071-7517e1cd-05be-4a31-964e-0f391f5ca30f.png">
